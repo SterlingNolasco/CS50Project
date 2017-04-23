@@ -1,10 +1,18 @@
-# Simple two DC motor robot class usage example.
-# Author: Tony DiCola
-# License: MIT License https://opensource.org/licenses/MIT
+
+#Sterling Nolasco And Neisy 
+# CS50xMiami 
+
+
 import time
+
+import RPi.GPIO as GPIO
 
 # Import the Robot.py file (must be in the same directory as this file!).
 import Robot
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(21,GPIO.OUT)
 
 
 # Set the trim offset for each motor (left and right).  This is a value that
@@ -37,13 +45,22 @@ robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 #                     this amount of seconds the robot will stop.  This parameter
 #                     is optional and if not specified the robot will start moving
 #                     forever.
-robot.forward(120,4.0)   # Move forward at speed 150 for 1 second.
-robot.left(100, 0.5)      # Spin left at speed 200 for 0.5 seconds.
-robot.forward(100, 4.0)   # Repeat the same movement 3 times below...
-robot.left(100, 0.5)
-robot.forward(100, 4.0)
-robot.left(100, 0.5)
-robot.forward(100, 0.5)
+robot.forward(120,1.0)   # Move forward at speed 150 for 1 second.
+print("Going Forward..")
+
+if robot.forward:
+    GPIO.output(21,GPIO.HIGH)
+
+robot.backward(120, 1.0)
+
+if robot.backward:
+    GPIO.output(21,GPIO.LOW)
+
+#robot.left(100, 0.5)      # Spin left at speed 200 for 0.5 seconds.
+#robot.forward(100, 4.0)   # Repeat the same movement 3 times below...
+#robot.forward(100, 4.0)
+#robot.left(100, 0.5)
+#robot.forward(100, 0.5)
 #robot.right(80, 0.5)
 
 # Spin in place slowly for a few seconds.
