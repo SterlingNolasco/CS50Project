@@ -46,14 +46,15 @@ robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 #                     this amount of seconds the robot will stop.  This parameter
 #                     is optional and if not specified the robot will start moving
 #                     forever.
-robot.forward(120,3.0)   # Move forward at speed 120 for 1 second.
+robot.forward(120,3.0)   # Move forward at speed 120 for second.
 print("Going Forward..")
 
 if robot.forward:
-    GPIO.output(21,GPIO.HIGH) #Turn on the LED Light while going Forward
+    GPIO.output(21,GPIO.HIGH) #Turn on the LED Light and keep it stady while going Forward
 
-robot.backward(120, 6.0) # goes Backwards for 1 Second
+robot.backward(120, 6.0) # goes Backwards for Second
 
+# LED lights blink 
 if robot.backward:
     print("Going Backwards...")
     GPIO.output(21,GPIO.LOW) # turn off LED while going Backwards
@@ -66,17 +67,6 @@ if robot.backward:
     time.sleep(0.5)
     GPIO.output(21,GPIO.LOW)
 
-
-
-#robot.left(100, 0.5)      # Spin left at speed 200 for 0.5 seconds.
-#robot.forward(100, 4.0)   # Repeat the same movement 3 times below...
-#robot.forward(100, 4.0)
-#robot.left(100, 0.5)
-#robot.forward(100, 0.5)
-#robot.right(80, 0.5)
-
-# Spin in place slowly for a few seconds.
-#robot.right(100)  # No time is specified so the robot will start spinning forever.
 time.sleep(2.0)   # Pause for a few seconds while the robot spins (you could do
-                  # other processing here though!).
+
 robot.stop()      # Stop the robot from moving.
