@@ -1,5 +1,6 @@
 
 #Sterling Nolasco And Neisy 
+
 # CS50xMiami 
 
 
@@ -45,16 +46,27 @@ robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 #                     this amount of seconds the robot will stop.  This parameter
 #                     is optional and if not specified the robot will start moving
 #                     forever.
-robot.forward(120,1.0)   # Move forward at speed 150 for 1 second.
+robot.forward(120,3.0)   # Move forward at speed 120 for 1 second.
 print("Going Forward..")
 
 if robot.forward:
-    GPIO.output(21,GPIO.HIGH)
+    GPIO.output(21,GPIO.HIGH) #Turn on the LED Light while going Forward
 
-robot.backward(120, 1.0)
+robot.backward(120, 6.0) # goes Backwards for 1 Second
 
 if robot.backward:
+    print("Going Backwards...")
+    GPIO.output(21,GPIO.LOW) # turn off LED while going Backwards
+    time.sleep(0.5)
+    GPIO.output(21,GPIO.HIGH)
+    time.sleep(0.5)
     GPIO.output(21,GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(21,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(21,GPIO.LOW)
+
+
 
 #robot.left(100, 0.5)      # Spin left at speed 200 for 0.5 seconds.
 #robot.forward(100, 4.0)   # Repeat the same movement 3 times below...
@@ -68,14 +80,3 @@ if robot.backward:
 time.sleep(2.0)   # Pause for a few seconds while the robot spins (you could do
                   # other processing here though!).
 robot.stop()      # Stop the robot from moving.
-
-# Now move backwards and spin right a few times.
-#robot.backward(150, 1.0)
-#robot.right(200, 0.5)
-#robot.backward(150, 1.0)
-#robot.right(200, 0.5)
-#robot.backward(150, 1.0)
-#robot.right(200, 0.5)
-#robot.backward(150, 1.0)
-
-# That's it!  Note that on exit the robot will automatically stop moving.
